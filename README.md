@@ -9,6 +9,7 @@ Students are expected to:
 Student Info
 =========================
 
-* Student Name: MY BEAUTY (is) FULL 
-* Student ID: ID123
+* Student Name: LÊ VŨ HOÀNG LINH 
+* Student ID: BI12-243
+* Major: CS
 
