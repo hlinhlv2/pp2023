@@ -9,15 +9,21 @@
 # • List students
 # • Show student marks for a given course
 
+
 def input_student():
     student_number = int(input("Enter number of students: "))
     student_list = []
-    for i in range(student_number):
+    for i in range(student_number): 
         student_info = {}
         student_info["id"] = input("Enter student id: ")
-        student_info["name"] = input("Enter student name: ")
+        for j in range(i):
+            while student_info["id"] == student_list[j]["id"]:
+                print("Student id already exists")
+                student_info["id"] = input("Enter student id: ")
+        student_info["name"] = input("Enter student name: ") 
         student_info["dob"] = input("Enter student DoB: ")
         print()
+
         student_list.append(student_info)
     return student_list
 
@@ -27,6 +33,10 @@ def input_course():
     for i in range(course_number):
         course_info = {}
         course_info["id"] = input("Enter course id: ")
+        for j in range(i):
+            while course_info["id"] == course_list[j]["id"]:
+                print("Course id already exists")
+                course_info["id"] = input("Enter course id: ")
         course_info["name"] = input("Enter course name: ")
         print()
         course_list.append(course_info)
@@ -34,15 +44,25 @@ def input_course():
 
 def input_mark(student_list, course_list):
     course_select = input("Enter course id: ")
-    for course in course_list:
-        if course["id"] == course_select:
-            course_name = course["name"]
-            for student in student_list:
-                # input mark with student name
-                student["mark"] = input(f"Enter mark for {student['name']}: ")
+    while course_select not in [course["id"] for course in course_list]:
+        print("Course id not found")
+        course_select = input("Enter course id: ")
+        course_name = course["name"]
+        for student in student_list:
+            # input mark with student name
+            student["mark"] = input(f"Enter mark for {student['name']}: ")
+    #for course in course_list:
+    #    if course["id"] == course_select:
+    #        course_name = course["name"]
+    #        for student in student_list:
+    #            # input mark with student name
+    #            student["mark"] = input(f"Enter mark for {student['name']}: ")
+    #    else:
+    #        print("Course id not found")
+
     mark_list = student_list
     return mark_list, course_name
-
+    
 def list_students(student_list):
     print("Student list: ")
     for student in student_list:
